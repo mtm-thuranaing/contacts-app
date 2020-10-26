@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../../components/modal/modal.component';
 @Component({
@@ -8,12 +9,14 @@ import { ModalComponent } from '../../components/modal/modal.component';
 })
 export class ContactListComponent implements OnInit {
 
-  constructor(private modalService: NgbModal) { }
+  constructor(
+    private modalService: NgbModal,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  open() {
+  deleteModal() {
     const modalRef = this.modalService.open(ModalComponent, { centered: true });
     modalRef.componentInstance.title = 'Delete';
 
@@ -22,6 +25,10 @@ export class ContactListComponent implements OnInit {
     }, (reason) => {
       console.log(reason, 'reason');
     });
+  }
+
+  editContact(id: string) {
+    this.router.navigate(['/contact-edit', id]);
   }
 
 }

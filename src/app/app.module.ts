@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { ContactListComponent } from './pages/contact-list/contact-list.component';
 import { ContactAddComponent } from './pages/contact-add/contact-add.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { ContactEditComponent } from './pages/contact-edit/contact-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactListComponent,
     ContactAddComponent,
-    ModalComponent
+    ModalComponent,
+    ContactEditComponent
   ],
   imports: [
     BrowserModule,
