@@ -1,0 +1,22 @@
+{
+  "contacts": [
+    {
+      "id": "2",
+      "name": "John Smith 2",
+      "email": "john.smith2@gmail.com",
+      "phone": "+95912345678"
+    },
+    {
+      "id": "CbGmp4V",
+      "name": "scm dott",
+      "email": "scm.developer1@gmail.com",
+      "phone": "+95912345678"
+    },
+    {
+      "id": "vFthPJK",
+      "name": "test edit",
+      "email": "test@gmail.com",
+      "phone": "+9876543"
+    }
+  ]
+}

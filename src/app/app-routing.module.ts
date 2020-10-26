@@ -5,18 +5,20 @@ import { ContactListComponent } from './pages/contact-list/contact-list.componen
 import { ContactAddComponent } from './pages/contact-add/contact-add.component';
 import { ContactEditComponent } from './pages/contact-edit/contact-edit.component';
 
+import { ContactListResolver } from './resolver/contact-list.service'
 
 const routes: Routes = [
-  { path: '', component: ContactListComponent },
-  { path: 'contact-list', component: ContactListComponent },
-  { path: 'contact-add', component: ContactAddComponent },
-  { path: 'contact-edit/:id', component: ContactEditComponent },
+  { path: '', component: ContactListComponent, resolve: { contactList: ContactListResolver } },
+  { path: 'contact-list', component: ContactListComponent, resolve: { contactList: ContactListResolver } },
+  { path: 'contact-add', component: ContactAddComponent, resolve: { contactList: ContactListResolver } },
+  { path: 'contact-edit/:id', component: ContactEditComponent, resolve: { contactList: ContactListResolver } },
   { path: '**', redirectTo: '/contact-list', pathMatch: 'full' },
 ];
 
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [ContactListResolver]
 })
 export class AppRoutingModule { }
