@@ -10,6 +10,7 @@ import { ContactListComponent } from './pages/contact-list/contact-list.componen
 import { ContactAddComponent } from './pages/contact-add/contact-add.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { ContactEditComponent } from './pages/contact-edit/contact-edit.component';
+import { ContactFilterPipe } from './pipes/contact-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ContactEditComponent } from './pages/contact-edit/contact-edit.componen
     ContactListComponent,
     ContactAddComponent,
     ModalComponent,
-    ContactEditComponent
+    ContactEditComponent,
+    ContactFilterPipe
   ],
   imports: [
     BrowserModule,

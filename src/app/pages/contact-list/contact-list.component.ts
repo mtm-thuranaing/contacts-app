@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../../components/modal/modal.component';
-import { ApiService } from '../../services/api.service'
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-contact-list',
@@ -11,6 +11,7 @@ import { ApiService } from '../../services/api.service'
 })
 export class ContactListComponent implements OnInit {
   public contactList: [];
+  public filterValue: string;
   constructor(
     private modalService: NgbModal,
     private router: Router,

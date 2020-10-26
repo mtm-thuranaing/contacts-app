@@ -3,7 +3,7 @@
     <div class="row mb-4">
       <div class="col col-md-6">
         <input type="search" class="form-control" placeholder="Search contacts" aria-label="search contacts"
-          aria-describedby="basic-addon1">
+          aria-describedby="basic-addon1" [(ngModel)]="filterValue">
       </div>
       <div class="col col-md-6 d-flex justify-content-end">
         <button type="button" class="btn btn-success" routerLink="/contact-add">
@@ -17,7 +17,7 @@
       </div>
     </div>
 
-    <div class="card" *ngFor="let contact of contactList">
+    <div class="card" *ngFor="let contact of contactList | contactFilter: filterValue">
       <div class="row no-gutters">
         <div class="col-md-8">
           <div class="card-body">
