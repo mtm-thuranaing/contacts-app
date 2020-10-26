@@ -35,6 +35,8 @@ export class ContactListComponent implements OnInit {
   deleteModal(id: string) {
     const modalRef = this.modalService.open(ModalComponent, { centered: true });
     modalRef.componentInstance.title = 'Delete';
+    modalRef.componentInstance.body = 'Are you sure to delete?';
+    modalRef.componentInstance.type = 'delete';
 
     modalRef.result.then((result) => {
       console.log(result, 'result');
