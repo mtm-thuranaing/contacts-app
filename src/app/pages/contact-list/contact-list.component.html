@@ -12,28 +12,38 @@
         </button>
       </div>
     </div>
-    <div class="card" *ngFor="let contact of contactList | contactFilter: filterValue">
-      <div class="row no-gutters">
-        <div class="col-md-8">
-          <div class="card-body">
-            <h4 class="card-title">{{contact.name}}</h4>
-            <p class="card-text">{{contact.phone}}</p>
-            <p class="card-text">{{contact.email}}</p>
+    <ng-container *ngIf="( contactList | contactFilter: filterValue).length !== 0;else noContact">
+      <div class="card" *ngFor="let contact of contactList | contactFilter: filterValue">
+        <div class="row no-gutters">
+          <div class="col-md-8">
+            <div class="card-body">
+              <h4 class="card-title">{{contact.name}}</h4>
+              <p class="card-text">{{contact.phone}}</p>
+              <p class="card-text">{{contact.email}}</p>
+            </div>
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card-body d-flex justify-content-md-end">
-            <button type="button" class="btn btn-light text-danger mr-1" (click)="deleteModal(contact.id)">
-              <i class="fa fa-trash"></i>
-              Delete
-            </button>
-            <button type="button" class="btn btn-warning ext-dark" (click)="editContact(contact.id)">
-              <i class="fa fa-edit"></i>
-              Edit
-            </button>
+          <div class="col-md-4">
+            <div class="card-body d-flex justify-content-md-end">
+              <button type="button" class="btn btn-light text-danger mr-1" (click)="deleteModal(contact.id)">
+                <i class="fa fa-trash"></i>
+                Delete
+              </button>
+              <button type="button" class="btn btn-warning ext-dark" (click)="editContact(contact.id)">
+                <i class="fa fa-edit"></i>
+                Edit
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </ng-container>
+    <ng-template #noContact>
+      <div class="row no-gutters">
+        <div class="col-md-12 d-block p-2 bg-info text-dark pl-3 font-weight-bolder">
+          <i class="fa fa-1x fa-info-circle"></i>
+          You have no contact currently.
+        </div>
+      </div>
+    </ng-template>
   </div>
 </main>

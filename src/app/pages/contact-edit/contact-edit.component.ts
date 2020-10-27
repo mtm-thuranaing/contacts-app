@@ -24,9 +24,9 @@ export class ContactEditComponent implements OnInit {
   ) {
     this.editForm = new FormGroup({
       id: new FormControl(''),
-      name: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
-      phone: new FormControl('', [Validators.required, Validators.minLength(11)]),
+      phone: new FormControl('', [Validators.required]),
     });
   }
 
@@ -43,7 +43,8 @@ export class ContactEditComponent implements OnInit {
 
   editContact() {
     const checkExist = this.contactList.filter((item: any) => {
-      return item.email === this.editForm.get('email').value || item.phone === this.editForm.get('phone').value;
+      return item.id !== this.editForm.get('id').value && (item.email === this.editForm.get('email').value ||
+        item.phone === this.editForm.get('phone').value);
     });
     if (checkExist.length > 0) {
       const modalRef = this.modalService.open(ModalComponent, { centered: true });

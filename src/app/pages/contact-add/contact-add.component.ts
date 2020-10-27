@@ -24,9 +24,9 @@ export class ContactAddComponent implements OnInit {
   ) {
     this.addForm = new FormGroup({
       id: new FormControl(''),
-      name: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
-      phone: new FormControl('', [Validators.required, Validators.minLength(11)]),
+      phone: new FormControl('', [Validators.required]),
     });
   }
 
@@ -46,6 +46,9 @@ export class ContactAddComponent implements OnInit {
       modalRef.componentInstance.title = 'Add';
       modalRef.componentInstance.body = 'The contact already exists!';
     } else {
+      this.addForm.patchValue({
+        id: String(this.contactList.length + 1)
+      });
       this.apiService.createContact(this.addForm.value).then((data) => {
         this.router.navigate(['/']);
       });
