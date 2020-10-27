@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { ApiService } from '../../services/api.service';
+import { Contact } from '../../interfaces/contact';
 
 @Component({
   selector: 'app-contact-list',
@@ -10,7 +11,7 @@ import { ApiService } from '../../services/api.service';
   styleUrls: ['./contact-list.component.css']
 })
 export class ContactListComponent implements OnInit {
-  public contactList: [];
+  public contactList: Array<Contact>;
   public filterValue: string;
   constructor(
     private modalService: NgbModal,
@@ -20,15 +21,16 @@ export class ContactListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.activeRoute.data.subscribe(data => {
-     this.contactList = data.contactList;
+    this.activeRoute.data.subscribe((data: any) => {
+      this.contactList = data.contactList;
     });
   }
 
   getContactlist() {
-    this.apiService.contactList().then((data) => {
-      console.log(data);
+    this.apiService.contactList().then((data: Array<Contact>) => {
       this.contactList = data;
+    }).catch(err => {
+      this.apiService.errorHandler(err);
     });
   }
 
@@ -38,13 +40,12 @@ export class ContactListComponent implements OnInit {
     modalRef.componentInstance.body = 'Are you sure to delete?';
     modalRef.componentInstance.type = 'delete';
 
-    modalRef.result.then((result) => {
-      console.log(result, 'result');
+    modalRef.result.then((result: any) => {
       this.apiService.deleteContact(id).then(() => {
         this.getContactlist();
+      }).catch(err => {
+        this.apiService.errorHandler(err);
       });
-    }, (reason) => {
-      console.log(reason, 'reason');
     });
   }
 

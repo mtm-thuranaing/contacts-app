@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ApiService } from '../../services/api.service';
 import { ModalComponent } from '../../components/modal/modal.component';
+import { Contact } from '../../interfaces/contact';
 
 @Component({
   selector: 'app-contact-add',
@@ -12,7 +13,7 @@ import { ModalComponent } from '../../components/modal/modal.component';
   styleUrls: ['./contact-add.component.css']
 })
 export class ContactAddComponent implements OnInit {
-  public contactList: object[];
+  public contactList: Array<Contact>;
   public addForm: FormGroup;
   public contact: {};
   public contactId: string;
@@ -31,14 +32,13 @@ export class ContactAddComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activeRoute.data.subscribe(data => {
+    this.activeRoute.data.subscribe((data: any) => {
       this.contactList = data.contactList;
-      console.log(this.contactList);
     });
   }
 
   addContact() {
-    const checkExist = this.contactList.filter((item: any) => {
+    const checkExist = this.contactList.filter((item: Contact) => {
       return item.email === this.addForm.get('email').value || item.phone === this.addForm.get('phone').value;
     });
     if (checkExist.length > 0) {
@@ -51,6 +51,8 @@ export class ContactAddComponent implements OnInit {
       });
       this.apiService.createContact(this.addForm.value).then((data) => {
         this.router.navigate(['/']);
+      }).catch(err => {
+        this.apiService.errorHandler(err);
       });
     }
   }

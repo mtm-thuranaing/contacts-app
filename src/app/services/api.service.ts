@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpParameterCodec } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Contact } from '../interfaces/contact';
+import { ModalComponent } from '../components/modal/modal.component';
 
 import { environment } from '../../environments/environment';
 @Injectable({
@@ -18,6 +20,7 @@ export class ApiService {
 
   constructor(
     public http: HttpClient,
+    private modalService: NgbModal
   ) { }
 
   public contactList(): Promise<any> {
@@ -28,11 +31,11 @@ export class ApiService {
     return this.http.get(this.apiEndpoint + `/contacts/${id}`, this.httpOptions).toPromise();
   }
 
-  public createContact(body): Promise<any> {
+  public createContact(body: Contact): Promise<any> {
     return this.http.post(this.apiEndpoint + '/contacts', body, this.httpOptions).toPromise();
   }
 
-  public updateContact(id: string, body): Promise<any> {
+  public updateContact(id: string, body: Contact): Promise<any> {
     return this.http.put(this.apiEndpoint + `/contacts/${id}`, body, this.httpOptions).toPromise();
   }
 
@@ -40,4 +43,10 @@ export class ApiService {
     return this.http.delete(this.apiEndpoint + `/contacts/${id}`, this.httpOptions).toPromise();
   }
 
+  async errorHandler(error: any) {
+    console.log(error);
+    const modalRef = this.modalService.open(ModalComponent, { centered: true });
+    modalRef.componentInstance.title = 'Error';
+    modalRef.componentInstance.body = error.message;
+  }
 }
