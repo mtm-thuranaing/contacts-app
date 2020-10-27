@@ -1,15 +1,15 @@
 {
-  "contactss": [
+  "contacts": [
     {
       "id": "1",
-      "name": "test",
+      "name": "John Smith",
       "email": "john.smith@gmail.com",
-      "phone": "+95912345678df"
+      "phone": "+959123456782"
     },
     {
       "id": "2",
-      "name": "test",
-      "email": "teswt@gmail.com",
+      "name": "John",
+      "email": "john@gmail.com",
       "phone": "+959123456783"
     }
   ]
