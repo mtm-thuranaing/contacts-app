@@ -26,8 +26,8 @@ export class ContactAddComponent implements OnInit {
     this.addForm = new FormGroup({
       id: new FormControl(''),
       name: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
-      phone: new FormControl('', [Validators.required, Validators.minLength(11)])
+      email: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
+      phone: new FormControl('', [Validators.required, Validators.minLength(11), Validators.pattern('^((\\+95-?)|0)?[0-9]{10}$')])
     });
   }
 
