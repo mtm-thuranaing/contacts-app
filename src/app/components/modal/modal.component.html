@@ -1,0 +1,19 @@
+<!-- modal -->
+<div class="modal-header">
+  <h5 class="modal-title">{{title}} contact</h5>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('close')">
+    <i class="fa fa-times"></i>
+  </button>
+</div>
+<div class="modal-body">{{body}}</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-light text-info mr-1" ngbAutofocus (click)="activeModal.dismiss('close')">
+    <i class="fa fa-times"></i>
+    Close
+  </button>
+  <button type="button" class="btn btn-light text-danger mr-1" *ngIf="type === 'delete'"
+    (click)="activeModal.close('ok')">
+    <i class="fa fa-trash"></i>
+    Delete
+  </button>
+</div>
