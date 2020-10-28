@@ -46,7 +46,7 @@ export class ContactListComponent implements OnInit {
       }).catch(err => {
         this.apiService.errorHandler(err);
       });
-    });
+    }, (err) => {});
   }
 
   editContact(id: string) {

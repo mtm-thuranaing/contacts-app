@@ -44,9 +44,14 @@ export class ApiService {
   }
 
   async errorHandler(error: any) {
-    console.log(error);
     const modalRef = this.modalService.open(ModalComponent, { centered: true });
     modalRef.componentInstance.title = 'Error';
-    modalRef.componentInstance.body = error.message;
+    if (error.status === 0) {
+      modalRef.componentInstance.body = 'Cannot connect to server.';
+    } else if (error.status === 500) {
+      modalRef.componentInstance.body = 'Internal Server Error.';
+    } else if (error.status === 404) {
+      modalRef.componentInstance.body = '404 (Not found).';
+    }
   }
 }

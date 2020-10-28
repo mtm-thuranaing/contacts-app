@@ -8,7 +8,7 @@ import { ContactEditComponent } from './pages/contact-edit/contact-edit.componen
 import { ContactListResolver } from './resolver/contact-list.service'
 
 const routes: Routes = [
-  { path: '', component: ContactListComponent, resolve: { contactList: ContactListResolver } },
+  { path: '', redirectTo: '/contact-list', pathMatch: 'full' },
   { path: 'contact-list', component: ContactListComponent, resolve: { contactList: ContactListResolver } },
   { path: 'contact-add', component: ContactAddComponent, resolve: { contactList: ContactListResolver } },
   { path: 'contact-edit/:id', component: ContactEditComponent, resolve: { contactList: ContactListResolver } },
